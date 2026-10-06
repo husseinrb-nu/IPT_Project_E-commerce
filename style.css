@@ -1,0 +1,53 @@
+/* ◆ THEME ◆ dark blue palette stored as CSS variables so one edit recolors the site */
+:root{--bg:#050d1f;--panel:#0b1a3a;--line:#1e3a8a;--accent:#3b82f6;--soft:#93c5fd;--text:#e2e8f0;--ok:#22c55e;--bad:#f87171}
+/* ◆ BASE ◆ smooth scrolling makes nav links glide to each section */
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--text)}
+/* ◆ NAV ◆ sticky so the cart count is always visible while scrolling */
+.nav{position:sticky;top:0;z-index:9;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding:12px 24px;background:#030816;border-bottom:1px solid var(--line)}
+.nav a{color:var(--soft);margin-left:14px;text-decoration:none}
+.logo{font-weight:800;font-size:1.3rem;color:#fff}
+/* ◆ HERO ◆ */
+.hero{text-align:center;padding:90px 20px;background:radial-gradient(circle at 50% 0,#1e40af,var(--bg) 70%)}
+.hero h1{font-size:clamp(2rem,6vw,3.5rem);margin:0}
+.timer{font-size:1.5rem;font-weight:700;color:var(--soft)}
+/* ◆ LAYOUT ◆ scroll-margin keeps titles clear of the sticky nav */
+.wrap{max-width:960px;margin:auto;padding:48px 20px;scroll-margin-top:60px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card.selected{outline:3px solid var(--accent)}
+/* ◆ PHOTOS ◆ real JPG; the .fallback versions show an emoji when the file is missing */
+.photo{display:block;width:100%;height:160px;object-fit:cover;border-radius:10px;background:#0f2557}
+.photo.fallback{display:flex;align-items:center;justify-content:center;font-size:3.2rem}
+.thumb{width:48px;height:48px;object-fit:cover;border-radius:8px;vertical-align:middle;margin-right:8px;background:#0f2557}
+.thumb.fallback{display:inline-flex;align-items:center;justify-content:center;font-size:1.6rem}
+.price{color:var(--soft);font-weight:700}
+.hidden{display:none}
+/* ◆ CONTROLS ◆ */
+.btn{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:9px 16px;cursor:pointer;margin:2px}
+.btn:hover{background:#2563eb}.btn:disabled{opacity:.5;cursor:wait}
+.btn.ghost{background:transparent;border:1px solid var(--accent)}
+input,select{padding:9px;border-radius:6px;border:2px solid var(--line);background:#071230;color:var(--text)}
+input.valid{border-color:var(--ok)}input.invalid{border-color:var(--bad)}
+form{display:grid;gap:8px;background:var(--panel);padding:20px;border-radius:14px;border:1px solid var(--line)}
+.err{color:var(--bad)}.good{color:var(--ok)}.note{color:#94a3b8}
+.inline{display:flex;gap:6px;align-items:center}
+.log{background:#030816;color:#7dd3fc;padding:10px;border-radius:8px;min-height:50px}
+/* ◆ CART ◆ */
+#cartList{list-style:none;padding:0}
+#cartList li{display:flex;justify-content:space-between;align-items:center;background:var(--panel);margin:6px 0;padding:10px;border-radius:8px}
+/* ◆ ORDERS ◆ one box per bought order, with a progress bar the tracker fills in */
+.order{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+.order-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.order-items{margin:10px 0}
+.bar{height:12px;background:#071230;border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.fill{height:100%;width:0;background:var(--accent);transition:width .15s linear}
+.fill.done{background:var(--ok)}
+.track-nums{display:flex;justify-content:space-between;flex-wrap:wrap;margin:8px 0;font-variant-numeric:tabular-nums}
+.stages{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.stage{padding:4px 10px;border-radius:99px;border:1px solid var(--line);color:#94a3b8;font-size:.85rem}
+.stage.on{border-color:var(--ok);color:var(--ok)}
+/* ◆ TOAST ◆ small popup, shown/hidden with a class */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--accent);padding:12px 18px;border-radius:10px;opacity:0;transition:.3s}
+.toast.show{opacity:1}
+footer{text-align:center;padding:24px;background:#030816;color:#94a3b8}

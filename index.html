@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TreadKicks | Shoe Store</title>
+<!-- ▼ FILES ▼ styles live in style.css, logic lives in script.js (keep all 3 in the same folder) -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ▼ NAV ▼ links jump to sections; #cartCount is updated by JS; #authBtn = Sign in / Logout -->
+<header class="nav">
+  <span class="logo">👟 TreadKicks</span>
+  <nav>
+    <a href="#home">Home</a><a href="#shop">Shop</a><a href="#cart">Cart (<span id="cartCount">0</span>)</a>
+    <a href="#orders">My Orders</a><a href="#reviews">Reviews</a><button id="authBtn" class="btn">Sign in</button>
+  </nav>
+</header>
+
+<!-- ▼ HERO ▼ countdown is driven by setInterval -->
+<section id="home" class="hero">
+  <h1>Step Up Your Game</h1>
+  <p>Sneakers, boots and sandals for every stride.</p>
+  <p class="timer">⚡ Flash sale ends in <span id="countdown">05:00</span></p>
+  <a class="btn" href="#shop">Shop now</a>
+</section>
+
+<!-- ▼ SHOP ▼ cards are created by JS; filters and search narrow them -->
+<section id="shop" class="wrap">
+  <h2>Shop</h2>
+  <div>
+    <button class="btn ghost" data-filter="all">All</button>
+    <button class="btn ghost" data-filter="sneaker">Sneakers</button>
+    <button class="btn ghost" data-filter="boot">Boots</button>
+    <button class="btn ghost" data-filter="sandal">Sandals</button>
+    <input id="search" placeholder="Search shoes...">
+  </div>
+  <p class="note">Click a card to select it. ♡ saves to wishlist.</p>
+  <div id="productGrid" class="grid"></div>
+  <h3>Event flow log</h3>
+  <pre id="eventLog" class="log">Click a product...</pre>
+</section>
+
+<!-- ▼ CART + CHECKOUT ▼ cart is an array: push adds, pop undoes. Placing an order "buys" the cart -->
+<section id="cart" class="wrap">
+  <h2>Your Cart</h2>
+  <ul id="cartList"></ul>
+  <p>Total: <strong id="cartTotal">₱0</strong></p>
+  <button id="undoBtn" class="btn ghost">Undo last add</button>
+
+  <h3>Checkout</h3>
+  <form id="checkoutForm" novalidate>
+    <label for="cName">Full name</label><input id="cName"><small id="cNameErr"></small>
+    <label for="cEmail">Email</label><input id="cEmail" type="email"><small id="cEmailErr"></small>
+    <label for="cAddr">Address</label><input id="cAddr"><small id="cAddrErr"></small>
+    <button class="btn" id="payBtn" type="submit">Place order &amp; track</button>
+    <p id="orderStatus" class="note"></p>
+  </form>
+</section>
+
+<!-- ▼ MY ORDERS ▼ bought orders are listed here per account; each one can be tracked -->
+<section id="orders" class="wrap">
+  <h2>My Orders</h2>
+  <div id="orderList"></div>
+</section>
+
+<!-- ▼ LOGIN ▼ -->
+<section id="login" class="wrap">
+  <h2 id="authTitle">Sign In</h2>
+  <div><button type="button" class="btn ghost" id="modeIn">Sign in</button><button type="button" class="btn ghost" id="modeUp">Create account</button></div>
+  <form id="loginForm" novalidate>
+    <div id="nameRow" class="hidden"><label for="uName">Full name</label><input id="uName"><small id="uNameErr"></small></div>
+    <label for="email">Email Address</label><input id="email" type="email" placeholder="Enter email"><small id="emailErr"></small>
+    <label for="password">Password</label><input id="password" type="password" placeholder="Enter password"><small id="passErr"></small>
+    <label class="inline"><input type="checkbox" id="showPass"> Show password</label>
+    <label class="inline"><input type="checkbox" id="remember"> Remember me</label>
+    <button class="btn" id="loginBtn" type="submit">Sign in</button>
+    <p id="loginOut" class="note">New here? Choose Create account first.</p>
+  </form>
+</section>
+
+<!-- ▼ REVIEWS ▼ loaded from a public API -->
+<section id="reviews" class="wrap">
+  <h2>Customer Reviews</h2>
+  <button id="loadBtn" class="btn">Load reviews (GET)</button>
+  <p id="status" class="note">Ready.</p>
+  <ul id="reviewList"></ul>
+</section>
+
+<footer>© 2026 TreadKicks</footer>
+<div id="toast" class="toast"></div>
+
+<!-- ▼ SCRIPT ▼ loaded last so every element above already exists when the code runs -->
+<script src="script.js"></script>
+</body>
+</html>

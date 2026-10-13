@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TreadKicks | Basketball Shoes</title>
+<!-- ▼ FONTS ▼ condensed sports fonts like the mockup (Impact/Arial are used if offline) -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+<!-- ▼ FILES ▼ styles live in style.css, logic lives in script.js, photos live in the images folder -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ▼ SALE BAR ▼ the countdown text is filled in by JS every second -->
+<div class="salebar">🔥 FLASH SALE · <span id="salePct">30</span>% OFF every pair · ends in <b class="saleTime">01:00</b></div>
+
+<!-- ▼ NAV ▼ links jump to sections; the counts are updated by JS -->
+<header class="nav">
+  <a class="brand" href="#home"><img src="images/logo.png" alt="" width="40" height="40"><span>TREADKICKS</span></a>
+  <nav>
+    <a href="#home">Home</a><a href="#shop">Shop</a><a href="#collection">Collection</a><a href="#orders">My Orders</a><a href="#reviews">Reviews</a>
+  </nav>
+  <div class="tools">
+    <a href="#cart" class="iconlink" aria-label="Cart">🛒 <span id="cartCount" class="pill">0</span></a>
+    <button id="authBtn" class="btn ghost">Sign In</button>
+  </div>
+</header>
+
+<!-- ▼ HERO ▼ big logo on the left, sale countdown and button on the right -->
+<section id="home" class="hero">
+  <img class="herologo" src="images/logo.png" alt="TreadKicks logo">
+  <div class="herotext">
+    <h1>STEP INTO<br>YOUR NEXT<br>STORY.</h1>
+    <p>Built for your game.</p>
+    <p class="timer" id="saleLabel">⚡ Sale ends in <span class="saleTime">01:00</span></p>
+    <div class="bar"><div id="saleFill" class="fill"></div></div>
+    <a class="btn light" href="#shop">Shop Now →</a>
+  </div>
+</section>
+
+<!-- ▼ COLLECTION ▼ three shoe cuts; clicking one filters the shop -->
+<section id="collection" class="wrap">
+  <h2 class="title">Shop by category</h2>
+  <div class="cats">
+    <button class="cat" data-pick="mid"><img src="images/book-1-forrest-gump.jfif" alt=""><b>MID-TOPS</b></button>
+    <button class="cat" data-pick="low"><img src="images/kobe-8-what-the.jfif" alt=""><b>LOW-TOPS</b></button>
+  </div>
+</section>
+
+<!-- ▼ WHY US ▼ -->
+<section class="why">
+  <div class="wrap">
+    <h2 class="title">Why choose us</h2>
+    <div class="whygrid">
+      <div>🚚<b>FAST SHIPPING</b><span>Free over ₱10,000</span></div>
+      <div>🛡️<b>SECURE PAYMENTS</b><span>Shop with confidence.</span></div>
+      <div>🔄<b>EASY RETURNS</b><span>Hassle-free process.</span></div>
+      <div>⭐<b>QUALITY PICKS</b><span>Only the best for the court.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ▼ FEATURED ▼ first four shoes, built by JS -->
+<section class="wrap">
+  <h2 class="title">Featured products</h2>
+  <div id="featuredGrid" class="grid"></div>
+</section>
+
+<!-- ▼ SHOP ▼ cards are created by JS; filters, sort and search narrow them -->
+<section id="shop" class="wrap">
+  <h2 class="title">Shop</h2>
+  <div class="toolbar">
+    <button class="btn ghost chip" data-filter="all">All</button>
+    <button class="btn ghost chip" data-filter="mid">Mid-Tops</button>
+    <button class="btn ghost chip" data-filter="low">Low-Tops</button>
+    <button class="btn ghost chip" data-filter="wish">♥ Wishlist (<span id="wishCount">0</span>)</button>
+    <input id="search" placeholder="Search shoes...">
+    <select id="sort" aria-label="Sort">
+      <option value="default">Sort: Featured</option><option value="low">Price: Low to High</option>
+      <option value="high">Price: High to Low</option><option value="az">Name: A to Z</option>
+    </select>
+  </div>
+  <p class="note" id="shopNote">Pick your size, then tap Add to Cart. Tap ♡ to save a pair.</p>
+  <div id="productGrid" class="grid"></div>
+</section>
+
+<!-- ▼ BANNER ▼ -->
+<section class="wrap"><div class="banner"><div><small>NEW ARRIVALS</small><h2>FRESH KICKS.<br>SAME VIBE.</h2><a class="btn light" href="#shop">Shop New Arrivals →</a></div><img src="images/logo.png" alt=""></div></section>
+
+<!-- ▼ CART + CHECKOUT ▼ quantities, promo code, shipping and total are worked out by JS -->
+<section id="cart" class="wrap">
+  <h2 class="title">Your cart</h2>
+  <ul id="cartList"></ul>
+  <div class="promo"><input id="promoIn" placeholder="Promo code"><button id="promoBtn" class="btn ghost">Apply</button><small id="promoMsg" class="note">Try TREAD10</small></div>
+  <div class="sums">
+    <p>Subtotal <span id="sSub">₱0</span></p><p>Promo <span id="sDisc">-₱0</span></p>
+    <p>Shipping <span id="sShip">₱0</span></p><p class="big">Total <strong id="cartTotal">₱0</strong></p>
+  </div>
+  <button id="undoBtn" class="btn ghost">Undo last add</button><button id="clearBtn" class="btn ghost">Empty cart</button>
+
+  <h3>Checkout</h3>
+  <form id="checkoutForm" novalidate>
+    <label for="cName">Full name</label><input id="cName"><small id="cNameErr"></small>
+    <label for="cEmail">Email</label><input id="cEmail" type="email"><small id="cEmailErr"></small>
+    <label for="cAddr">Address</label><input id="cAddr"><small id="cAddrErr"></small>
+    <label for="cPay">Payment</label>
+    <select id="cPay"><option>Cash on delivery</option><option>GCash</option><option>Credit / debit card</option></select>
+    <button class="btn" id="payBtn" type="submit">Place order &amp; track</button>
+    <p id="orderStatus" class="note"></p>
+  </form>
+</section>
+
+<!-- ▼ MY ORDERS ▼ each account sees only its own orders -->
+<section id="orders" class="wrap"><h2 class="title">My orders</h2><div id="orderList"></div></section>
+
+<!-- ▼ LOGIN ▼ one form with two modes -->
+<section id="login" class="wrap">
+  <h2 class="title" id="authTitle">Sign In</h2>
+  <div><button type="button" class="btn ghost" id="modeIn">Sign in</button><button type="button" class="btn ghost" id="modeUp">Create account</button></div>
+  <form id="loginForm" novalidate>
+    <div id="nameRow" class="hidden"><label for="uName">Full name</label><input id="uName"><small id="uNameErr"></small></div>
+    <label for="email">Email Address</label><input id="email" type="email" placeholder="Enter email"><small id="emailErr"></small>
+    <label for="password">Password</label><input id="password" type="password" placeholder="Enter password"><small id="passErr"></small>
+    <label class="inline"><input type="checkbox" id="showPass"> Show password</label>
+    <label class="inline"><input type="checkbox" id="remember"> Remember me</label>
+    <button class="btn" id="loginBtn" type="submit">Sign in</button>
+    <p id="loginOut" class="note">New here? Choose Create account first.</p>
+  </form>
+</section>
+
+<!-- ▼ REVIEWS ▼ shoppers can write one; more are loaded from a public site -->
+<section id="reviews" class="wrap">
+  <h2 class="title">Customer reviews</h2>
+  <form id="reviewForm" class="inlineform">
+    <select id="rStars"><option value="5">★★★★★</option><option value="4">★★★★☆</option><option value="3">★★★☆☆</option><option value="2">★★☆☆☆</option><option value="1">★☆☆☆☆</option></select>
+    <input id="rText" placeholder="Share your thoughts..." maxlength="120"><button class="btn" type="submit">Post review</button>
+  </form>
+  <button id="loadBtn" class="btn ghost">Load more reviews</button>
+  <p id="status" class="note">Ready.</p>
+  <ul id="reviewList"></ul>
+</section>
+
+<footer>
+  <div class="brand"><img src="images/logo.png" alt="" width="36" height="36"><span>TREADKICKS</span></div>
+  <div>© 2026 TreadKicks. All rights reserved.</div>
+</footer>
+<div id="toast" class="toast"></div>
+
+<!-- ▼ SCRIPT ▼ loaded last so every element above already exists when the code runs -->
+<script src="script.js"></script>
+</body>
+</html>
